@@ -1,0 +1,39 @@
+package io.pragra.learning.springdatajpademo.service;
+
+import io.pragra.learning.springdatajpademo.model.Student;
+import io.pragra.learning.springdatajpademo.repository.AddressRepo;
+import io.pragra.learning.springdatajpademo.repository.CourseRepo;
+import io.pragra.learning.springdatajpademo.repository.InstituteRepo;
+import io.pragra.learning.springdatajpademo.repository.StudentRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+public class StudentService {
+
+    @Autowired
+    StudentRepo studentRepo;
+    @Autowired
+    AddressRepo addressRepo;
+    @Autowired
+    CourseRepo courseRepo;
+    @Autowired
+    InstituteRepo instituteRepo;
+
+
+    public Student addStudent(Student student) {
+        System.out.println(student.getCourses());
+        System.out.println(student.getAddress());
+
+        addressRepo.save(student.getAddress());
+        courseRepo.saveAll(student.getCourses());
+        instituteRepo.save(student.getInstitute());
+        return studentRepo.save(student);
+    }
+
+    public Optional<Student> getStudentById(Integer id) {
+        return studentRepo.findById(id);
+    }
+}
