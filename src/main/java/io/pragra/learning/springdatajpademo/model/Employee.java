@@ -20,6 +20,7 @@ public class Employee {
     private String lastName;
     private String emailId;
     private String designation;
+    private double salary;
 
     @OneToOne
     private Address address;
