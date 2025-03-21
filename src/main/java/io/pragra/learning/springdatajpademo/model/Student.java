@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Student {
@@ -15,14 +16,27 @@ public class Student {
     private String lName;
     private String email;
     private double marks;
-    @OneToOne
+    @OneToOne (cascade = CascadeType.PERSIST)
     private Address address;
     @ManyToOne
     private Institute institute;
     @OneToMany
     private List<Course> courses;
     @ManyToMany
-    private List<JobApplication> jobApplications;
+    @JoinTable(
+            name = "JobsApplied",
+            joinColumns = @JoinColumn(name = "studentId"),
+            inverseJoinColumns = @JoinColumn(name = "jobApplicationId")
+    )
+    private Set<JobApplication> jobApplications;
+
+    public Set<JobApplication> getJobApplications() {
+        return jobApplications;
+    }
+
+    public void setJobApplications(Set<JobApplication> jobApplications) {
+        this.jobApplications = jobApplications;
+    }
 
     public Integer getStudentId() {
         return studentId;
@@ -99,6 +113,7 @@ public class Student {
                 ", address=" + address +
                 ", institute=" + institute +
                 ", courses=" + courses +
+                ", jobApplications=" + jobApplications +
                 '}';
     }
 }

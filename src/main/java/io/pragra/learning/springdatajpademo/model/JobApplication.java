@@ -1,9 +1,8 @@
 package io.pragra.learning.springdatajpademo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Set;
 
 @Entity
 public class JobApplication {
@@ -12,6 +11,8 @@ public class JobApplication {
     private Integer jobApplicationId;
     private String jobTitle;
     private String jobDescription;
+    @ManyToMany(mappedBy = "jobApplications")
+    private Set<Student> appliedStudents;
 
     @Override
     public String toString() {

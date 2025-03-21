@@ -27,8 +27,13 @@ public class EmployeeAPI {
     }
 
     @GetMapping("/getById")
-    public Optional<Employee> getEmployee(@RequestParam Long id) {
+    public Optional<Employee> getEmployeeById(@RequestParam Long id) {
         return employeeService.getEmployeeById(id);
+    }
+
+    @GetMapping("/getFnameById")
+    public String getFnameById(@RequestParam Long id) {
+        return employeeService.getEmployeeById(id).get().getFirstName();
     }
 
     @GetMapping("/getAllEmployees")

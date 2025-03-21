@@ -22,8 +22,8 @@ public class Employee {
     private String designation;
     private double salary;
 
-    @OneToOne
+    @OneToOne (fetch = FetchType.LAZY)
     private Address address;
-    @OneToMany
+    @OneToMany (fetch = FetchType.LAZY)
     private List<BankDetails> bankDetails;
 }

@@ -1,10 +1,7 @@
 package io.pragra.learning.springdatajpademo.service;
 
 import io.pragra.learning.springdatajpademo.model.Student;
-import io.pragra.learning.springdatajpademo.repository.AddressRepo;
-import io.pragra.learning.springdatajpademo.repository.CourseRepo;
-import io.pragra.learning.springdatajpademo.repository.InstituteRepo;
-import io.pragra.learning.springdatajpademo.repository.StudentRepo;
+import io.pragra.learning.springdatajpademo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +19,8 @@ public class StudentService {
     CourseRepo courseRepo;
     @Autowired
     InstituteRepo instituteRepo;
+    @Autowired
+    JobApplicationRepo jobApplicationRepo;
 
 
     public Student addStudent(Student student) {
@@ -31,6 +30,7 @@ public class StudentService {
         addressRepo.save(student.getAddress());
         courseRepo.saveAll(student.getCourses());
         instituteRepo.save(student.getInstitute());
+        jobApplicationRepo.saveAll(student.getJobApplications());
         return studentRepo.save(student);
     }
 
