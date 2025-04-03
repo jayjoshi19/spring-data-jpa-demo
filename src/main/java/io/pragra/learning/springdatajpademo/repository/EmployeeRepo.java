@@ -17,6 +17,8 @@ public interface EmployeeRepo extends JpaRepository<Employee, Long> {
 
     @Query("select e from Employee e where e.designation = ?1")
     List<Employee> getAllByDesignation(String designation);
+
+    Employee findByLastName(String lastName);
 }
 
 

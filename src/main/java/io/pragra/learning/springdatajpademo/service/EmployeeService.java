@@ -37,14 +37,14 @@ public class EmployeeService {
         return employeeRepo.findAll();
     }
 
-    public Employee deleteEmployee(Long id) {
+    public Optional<Employee> deleteEmployee(Long id) {
         Optional<Employee> opEmployee = employeeRepo.findById(id);
-        if (opEmployee.isPresent()){
+//        if (opEmployee.isPresent()){
             Employee employee = opEmployee.get();
             employeeRepo.delete(employee);
-            return employee;
-        }
-        return null;
+            return Optional.of(employee);
+//        }
+//        return null;
     }
 
     public Employee updateEmployee(Employee updatedEmployee) {
@@ -87,8 +87,12 @@ public class EmployeeService {
         return employeeRepo.findAllByFirstName(firstName);
     }
 
-    public List<Employee> getEmployeesByLastName(String lastName) {
-        return employeeRepo.findAllByLastName(lastName);
+//    public List<Employee> getEmployeesByLastName(String lastName) {
+//        return employeeRepo.findAllByLastName(lastName);
+//    }
+
+    public Employee getEmployeeByLastName(String lastName) {
+        return employeeRepo.findByLastName(lastName);
     }
 
     public List<Employee> getEmployeesByDesignation(String designation) {
