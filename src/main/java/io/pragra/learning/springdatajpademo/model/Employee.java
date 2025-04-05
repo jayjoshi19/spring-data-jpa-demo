@@ -20,9 +20,9 @@ public class Employee {
     private String designation;
     private double salary;
 
-    @OneToOne (fetch = FetchType.EAGER)
+    @OneToOne (fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private Address address;
-    @OneToMany (fetch = FetchType.EAGER)
+    @OneToMany (cascade = CascadeType.REMOVE)
     private List<BankDetails> bankDetails;
 
     @Override

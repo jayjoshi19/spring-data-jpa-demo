@@ -2,6 +2,7 @@ package io.pragra.learning.springdatajpademo.api;
 
 import io.pragra.learning.springdatajpademo.dto.ResponseDTO;
 import io.pragra.learning.springdatajpademo.model.Employee;
+import io.pragra.learning.springdatajpademo.service.OrganizationService;
 import io.pragra.learning.springdatajpademo.utils.EmployeeValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,13 @@ public class EmployeeAPI {
     @Autowired
     EmployeeService employeeService;
 
+    @Autowired
+    OrganizationService organizationService;
+
     @PostMapping("/add")
     public Employee addEmployee(@RequestBody Employee employee) {
-        return employeeService.addEmployee(employee);
+//        return employeeService.addEmployee(employee);
+        return organizationService.joinOrganization(employee);
     }
 
     @PostMapping("/addAll")

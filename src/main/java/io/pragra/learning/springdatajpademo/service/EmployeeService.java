@@ -6,11 +6,14 @@ import io.pragra.learning.springdatajpademo.repository.BankDetailsRepo;
 import io.pragra.learning.springdatajpademo.repository.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+@Transactional (propagation = Propagation.SUPPORTS)
 @Service
 public class EmployeeService {
 
